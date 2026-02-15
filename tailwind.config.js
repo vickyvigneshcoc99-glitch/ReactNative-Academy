@@ -1,0 +1,44 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    content: [
+        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    ],
+    theme: {
+        extend: {
+            keyframes: {
+                fadeInUp: {
+                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                }
+            },
+            animation: {
+                fadeInUp: 'fadeInUp 0.8s ease-out forwards',
+                fadeIn: 'fadeIn 1s ease-out forwards',
+                float: 'float 6s ease-in-out infinite',
+            },
+            fontFamily: {
+                sans: ['var(--font-sans)', 'sans-serif'],
+                mono: ['var(--font-mono)', 'monospace'],
+            },
+            colors: {
+                primary: {
+                    DEFAULT: 'var(--primary)',
+                    dark: 'var(--primary-dark)',
+                },
+                secondary: 'var(--secondary)',
+                accent: 'var(--accent)',
+            },
+        },
+    },
+    plugins: [],
+}
