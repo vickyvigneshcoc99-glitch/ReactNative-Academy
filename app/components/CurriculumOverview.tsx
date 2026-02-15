@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Lesson {
@@ -148,34 +148,33 @@ const difficultyLabels = {
 
 export function CurriculumOverview() {
     const [filter, setFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        // eslint-disable-next-line
+        setMounted(true);
+    }, []);
 
     const filteredLessons = filter === 'all'
         ? curriculum
         : curriculum.filter(lesson => lesson.difficulty === filter);
 
+    if (!mounted) return <div className="min-h-[400px]" />;
+
     return (
-        <div className="space-y-8">
+        <div className="space-y-12">
             {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-3 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center">
                 {(['all', 'beginner', 'intermediate', 'advanced'] as const).map((level) => (
                     <button
                         key={level}
                         onClick={() => setFilter(level)}
-                        className={`px-8 py-3 rounded-xl font-bold transition-all duration-300 relative group overflow-hidden ${filter === level
-                            ? 'text-white'
+                        className={`px-4 md:px-8 py-2 md:py-3 rounded-2xl font-bold transition-all duration-300 text-sm md:text-base ${filter === level
+                            ? 'bg-gradient-to-r from-[#61dafb] to-[#764abc] text-white shadow-xl scale-105'
                             : 'glass text-[var(--text-secondary)] hover:bg-white/10'
                             }`}
                     >
-                        {filter === level && (
-                            <motion.div
-                                layoutId="activeFilter"
-                                className="absolute inset-0 bg-gradient-to-r from-[#61dafb] to-[#764abc] shadow-lg"
-                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                            />
-                        )}
-                        <span className="relative z-10">
-                            {level === 'all' ? 'All Lessons' : difficultyLabels[level]}
-                        </span>
+                        {level === 'all' ? 'All' : difficultyLabels[level]}
                     </button>
                 ))}
             </div>
@@ -184,132 +183,99 @@ export function CurriculumOverview() {
             <AnimatePresence mode="wait">
                 <motion.div
                     key={filter}
-                    className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    variants={{
-                        visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-                        hidden: { opacity: 0, transition: { staggerChildren: 0.05, staggerDirection: -1 } }
-                    }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
                 >
                     {filteredLessons.length > 0 ? (
                         filteredLessons.map((lesson) => (
                             <motion.div
                                 key={lesson.id}
-                                layout
-                                variants={{
-                                    hidden: { opacity: 0, scale: 0.9, y: 20 },
-                                    visible: { opacity: 1, scale: 1, y: 0 }
-                                }}
-                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                whileHover={{ y: -10 }}
+                                className="h-full"
                             >
                                 <Link
                                     href={`/lessons/${lesson.id}`}
-                                    className="group block glass rounded-[2rem] p-8 hover:bg-white/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl h-full border border-white/5"
+                                    className="group block h-full glass rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl relative overflow-hidden"
                                 >
-                                    {/* Header */}
-                                    <div className="flex items-start justify-between mb-6">
-                                        <div className="text-5xl group-hover:scale-110 transition-transform duration-500">
-                                            {lesson.icon}
-                                        </div>
-                                        <div className={`px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg bg-gradient-to-r ${difficultyColors[lesson.difficulty]}`}>
-                                            {difficultyLabels[lesson.difficulty]}
-                                        </div>
-                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                    {/* Lesson Number */}
-                                    <div className="text-sm font-mono text-[#61dafb] mb-2 font-bold uppercase tracking-widest">
-                                        Lesson {lesson.id}
-                                    </div>
-
-                                    {/* Title */}
-                                    <h3 className="text-2xl font-black text-[var(--text-primary)] mb-3 group-hover:text-[#61dafb] transition-colors duration-300 leading-tight">
-                                        {lesson.title}
-                                    </h3>
-
-                                    {/* Description */}
-                                    <p className="text-[var(--text-secondary)] mb-6 line-clamp-3 leading-relaxed font-light">
-                                        {lesson.description}
-                                    </p>
-
-                                    {/* Topics */}
-                                    <div className="flex flex-wrap gap-2 mb-8">
-                                        {lesson.topics.slice(0, 3).map((topic, i) => (
-                                            <span
-                                                key={i}
-                                                className="px-3 py-1 bg-white/5 rounded-lg text-xs text-[var(--text-muted)] border border-white/5"
-                                            >
-                                                {topic}
+                                    <div className="relative z-10">
+                                        <div className="flex justify-between items-start mb-8">
+                                            <span className="text-5xl group-hover:scale-110 transition-transform duration-500 block">
+                                                {lesson.icon}
                                             </span>
-                                        ))}
-                                        {lesson.topics.length > 3 && (
-                                            <span className="px-3 py-1 bg-white/5 rounded-lg text-xs text-[var(--text-muted)] border border-white/5">
-                                                +{lesson.topics.length - 3}
+                                            <span className={`px-4 py-1.5 rounded-full text-xs font-bold text-white shadow-lg bg-gradient-to-r ${difficultyColors[lesson.difficulty]}`}>
+                                                {difficultyLabels[lesson.difficulty]}
                                             </span>
-                                        )}
-                                    </div>
-
-                                    {/* Footer */}
-                                    <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
-                                        <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] font-medium">
-                                            <svg className="w-4 h-4 text-[#61dafb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            {lesson.duration}
                                         </div>
-                                        <div className="flex items-center gap-2 text-[#61dafb] font-black text-sm uppercase translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
-                                            Explore
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
-                                            </svg>
+
+                                        <div className="text-sm font-mono text-[#61dafb] mb-2 font-black uppercase tracking-widest">
+                                            Lesson {lesson.id}
+                                        </div>
+
+                                        <h3 className="text-2xl font-black text-[var(--text-primary)] mb-4 group-hover:text-[#61dafb] transition-colors duration-300">
+                                            {lesson.title}
+                                        </h3>
+
+                                        <p className="text-[var(--text-secondary)] mb-8 line-clamp-3 leading-relaxed font-light">
+                                            {lesson.description}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-2 mb-8">
+                                            {lesson.topics.slice(0, 3).map((topic, i) => (
+                                                <span key={i} className="px-3 py-1 bg-white/5 rounded-lg text-xs text-[var(--text-muted)] border border-white/5">
+                                                    {topic}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+                                            <div className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
+                                                <svg className="w-4 h-4 text-[#61dafb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                {lesson.duration}
+                                            </div>
+                                            <div className="flex items-center gap-2 text-[#61dafb] font-black text-sm uppercase opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                                                Start
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                 </Link>
                             </motion.div>
                         ))
                     ) : (
-                        <motion.div
-                            className="col-span-full py-20 text-center glass rounded-[2rem]"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                        >
-                            <p className="text-2xl text-[var(--text-secondary)] font-light">No lessons found in this category 🔍</p>
-                        </motion.div>
+                        <div className="col-span-full py-20 text-center glass rounded-[2rem]">
+                            <p className="text-2xl text-[var(--text-secondary)]">No lessons found category 🔍</p>
+                        </div>
                     )}
                 </motion.div>
             </AnimatePresence>
 
-            {/* Progress Indicator */}
-            <motion.div
-                className="glass rounded-[2rem] p-10 text-center border border-white/10 relative overflow-hidden group"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#61dafb]/5 to-[#764abc]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <h3 className="text-3xl font-black mb-6 text-[var(--text-primary)] relative z-10">
-                    Your Academy Progress
-                </h3>
+            {/* Progress Bar */}
+            <div className="glass rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 text-center border border-white/10 relative overflow-hidden">
                 <div className="max-w-xl mx-auto relative z-10">
-                    <div className="h-4 bg-white/5 rounded-full overflow-hidden border border-white/5 p-1">
+                    <h3 className="text-3xl font-black mb-8 text-[var(--text-primary)]">Your Academy Progress</h3>
+                    <div className="h-4 bg-white/5 rounded-full overflow-hidden border border-white/5 p-1 mb-4">
                         <motion.div
-                            className="h-full bg-gradient-to-r from-[#61dafb] via-[#764abc] to-[#f76b1c] rounded-full shadow-[0_0_20px_rgba(97,218,251,0.4)]"
-                            initial={{ width: '0%' }}
-                            animate={{ width: '92%' }} // 12 of 13
-                            transition={{ duration: 1.5, ease: "easeOut", delay: 1 }}
+                            className="h-full bg-gradient-to-r from-[#61dafb] via-[#764abc] to-[#f76b1c] rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: '92%' }}
+                            transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
                         />
                     </div>
-                    <div className="flex justify-between mt-4">
-                        <p className="text-[var(--text-muted)] font-medium">
-                            12 of {curriculum.length} lessons completed
-                        </p>
-                        <p className="text-[#61dafb] font-black">
-                            92% COMPLETE
-                        </p>
+                    <div className="flex justify-between items-center px-2">
+                        <span className="text-[var(--text-muted)] font-bold">12 of 13 lessons completed</span>
+                        <span className="text-[#61dafb] font-black">92% COMPLETE</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }

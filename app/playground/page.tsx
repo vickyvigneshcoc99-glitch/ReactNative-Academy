@@ -323,19 +323,19 @@ export default function Playground() {
         </motion.div>
 
         {/* Header */}
-        <motion.div className="glass rounded-[3rem] p-16 mb-12 text-center relative overflow-hidden" variants={variants}>
+        <motion.div className="glass rounded-[2rem] md:rounded-[3rem] p-6 md:p-16 mb-12 text-center relative overflow-hidden" variants={variants}>
           <div className="absolute inset-0 bg-gradient-to-r from-[#61dafb]/5 to-[#764abc]/5" />
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md mb-6 border border-white/10">
               <span className="w-2 h-2 rounded-full bg-[#61dafb] animate-pulse" />
               <span className="text-sm font-mono text-[var(--text-muted)]">Live Sandbox</span>
             </div>
-            <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tight">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 tracking-tight leading-tight">
               <span className="bg-gradient-to-r from-[#61dafb] via-[#764abc] to-[#f76b1c] bg-clip-text text-transparent">
                 Interactive Lab
               </span>
             </h1>
-            <p className="text-2xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-lg md:text-2xl text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed font-light">
               Write React Native code and watch it transform into a real mobile experience.
               Experiment, break things, and learn by doing.
             </p>
@@ -344,10 +344,10 @@ export default function Playground() {
 
         {/* Template Selector */}
         <motion.div className="mb-8" variants={variants}>
-          <h2 className="text-2xl font-bold mb-4 text-[var(--text-primary)]">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 text-[var(--text-primary)]">
             Starter Templates
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {starterTemplates.map((template) => (
               <button
                 key={template.id}
@@ -417,13 +417,13 @@ export default function Playground() {
                   Run on Your Phone
                 </h4>
                 <p className="text-[var(--text-secondary)] mb-6 max-w-md">
-                  Click "Open in Expo Snack" to run this code on your actual device using the Expo Go app
+                  Click &quot;Open in Expo Snack&quot; to run this code on your actual device using the Expo Go app
                 </p>
                 <div className="glass rounded-xl p-6 text-left">
                   <h5 className="font-bold text-[#61dafb] mb-3">Quick Start:</h5>
                   <ol className="space-y-2 text-sm text-[var(--text-muted)]">
                     <li>1. Install Expo Go from App Store/Play Store</li>
-                    <li>2. Click "Open in Expo Snack" button</li>
+                    <li>2. Click &quot;Open in Expo Snack&quot; button</li>
                     <li>3. Scan the QR code with your phone</li>
                     <li>4. See your app running instantly!</li>
                   </ol>
@@ -434,29 +434,29 @@ export default function Playground() {
         </motion.div>
 
         {/* How It Works */}
-        <motion.div className="glass rounded-2xl p-8 mb-12" variants={variants}>
-          <h2 className="text-3xl font-black mb-6 text-[var(--text-primary)]">
+        <motion.div className="glass rounded-2xl p-6 md:p-8 mb-12" variants={variants}>
+          <h2 className="text-2xl md:text-3xl font-black mb-6 text-[var(--text-primary)]">
             How Expo Snack Works
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-5xl mb-4">✍️</div>
-              <h3 className="text-xl font-bold text-[#61dafb] mb-2">Write Code</h3>
-              <p className="text-[var(--text-muted)]">
+              <div className="text-4xl md:text-5xl mb-4">✍️</div>
+              <h3 className="text-lg md:text-xl font-bold text-[#61dafb] mb-2">Write Code</h3>
+              <p className="text-sm md:text-base text-[var(--text-muted)]">
                 Edit React Native code right in your browser
               </p>
             </div>
             <div className="text-center">
-              <div className="text-5xl mb-4">☁️</div>
-              <h3 className="text-xl font-bold text-[#764abc] mb-2">Cloud Build</h3>
-              <p className="text-[var(--text-muted)]">
+              <div className="text-4xl md:text-5xl mb-4">☁️</div>
+              <h3 className="text-lg md:text-xl font-bold text-[#764abc] mb-2">Cloud Build</h3>
+              <p className="text-sm md:text-base text-[var(--text-muted)]">
                 Expo compiles your code in the cloud instantly
               </p>
             </div>
             <div className="text-center">
-              <div className="text-5xl mb-4">📱</div>
-              <h3 className="text-xl font-bold text-[#f76b1c] mb-2">Run Native</h3>
-              <p className="text-[var(--text-muted)]">
+              <div className="text-4xl md:text-5xl mb-4">📱</div>
+              <h3 className="text-lg md:text-xl font-bold text-[#f76b1c] mb-2">Run Native</h3>
+              <p className="text-sm md:text-base text-[var(--text-muted)]">
                 See your app running on real iOS/Android devices
               </p>
             </div>
@@ -483,7 +483,7 @@ export default function Playground() {
               <div>
                 <h3 className="text-xl font-bold text-[#764abc] mb-2">No Setup Needed</h3>
                 <p className="text-[var(--text-secondary)]">
-                  Unlike traditional React Native development, you don't need Xcode or Android Studio.
+                  Unlike traditional React Native development, you don&apos;t need Xcode or Android Studio.
                   Just install Expo Go and start coding!
                 </p>
               </div>

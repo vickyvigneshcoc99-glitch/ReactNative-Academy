@@ -46,7 +46,7 @@ const componentMappings: ComponentMapping[] = [
   source={require('./logo.png')}
   style={{width: 100, height: 100}}
 />`,
-        notes: 'Requires explicit width/height. Use source={{ uri: "url" }} for remote images'
+        notes: "Requires explicit width/height. Use source={{ uri: 'url' }} for remote images"
     },
     {
         web: '<button>',
@@ -122,21 +122,20 @@ const componentMappings: ComponentMapping[] = [
 
 export function ComponentTranslator() {
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [activeTab, setActiveTab] = useState<'web' | 'native'>('web');
 
     const selected = componentMappings[selectedIndex];
 
     return (
-        <div className="glass rounded-3xl p-8 max-w-6xl mx-auto">
+        <div className="glass rounded-3xl p-4 md:p-8 max-w-6xl mx-auto">
             {/* Component Selector */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 mb-8">
                 {componentMappings.map((mapping, index) => (
                     <button
                         key={index}
                         onClick={() => setSelectedIndex(index)}
-                        className={`p-4 rounded-xl font-mono text-sm font-semibold transition-all duration-300 ${selectedIndex === index
-                                ? 'bg-gradient-to-r from-[#61dafb] to-[#764abc] text-white shadow-lg scale-105'
-                                : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+                        className={`p-2 sm:p-3 md:p-4 rounded-xl font-mono text-xs md:text-sm font-semibold transition-all duration-300 ${selectedIndex === index
+                            ? 'bg-gradient-to-r from-[#61dafb] to-[#764abc] text-white shadow-lg scale-105'
+                            : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
                             }`}
                     >
                         {mapping.web}
@@ -145,15 +144,15 @@ export function ComponentTranslator() {
             </div>
 
             {/* Translation Display */}
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 w-full">
                 {/* Web Component */}
-                <div className="bg-white/5 rounded-2xl p-6 border border-[#61dafb]/30 hover:border-[#61dafb]/60 transition-all duration-300">
+                <div className="bg-white/5 rounded-2xl p-4 md:p-6 border border-[#61dafb]/30 hover:border-[#61dafb]/60 transition-all duration-300 w-full min-w-0">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-3 h-3 rounded-full bg-[#61dafb]"></div>
                         <h3 className="text-xl font-bold text-[#61dafb]">React Web</h3>
                     </div>
                     <div className="mb-4">
-                        <code className="text-2xl font-mono font-bold text-white">{selected.web}</code>
+                        <code className="text-xl md:text-2xl font-mono font-bold text-white">{selected.web}</code>
                     </div>
                     <p className="text-sm text-[var(--text-muted)] mb-4">{selected.purpose}</p>
                     <div className="bg-[#0a0e27] rounded-xl p-4 border border-white/10">
@@ -164,13 +163,13 @@ export function ComponentTranslator() {
                 </div>
 
                 {/* Native Component */}
-                <div className="bg-white/5 rounded-2xl p-6 border border-[#764abc]/30 hover:border-[#764abc]/60 transition-all duration-300">
+                <div className="bg-white/5 rounded-2xl p-4 md:p-6 border border-[#764abc]/30 hover:border-[#764abc]/60 transition-all duration-300 w-full min-w-0">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-3 h-3 rounded-full bg-[#764abc]"></div>
                         <h3 className="text-xl font-bold text-[#764abc]">React Native</h3>
                     </div>
                     <div className="mb-4">
-                        <code className="text-2xl font-mono font-bold text-white">{selected.native}</code>
+                        <code className="text-xl md:text-2xl font-mono font-bold text-white">{selected.native}</code>
                     </div>
                     <p className="text-sm text-[var(--text-muted)] mb-4">{selected.purpose}</p>
                     <div className="bg-[#0a0e27] rounded-xl p-4 border border-white/10">

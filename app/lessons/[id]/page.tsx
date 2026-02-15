@@ -87,25 +87,25 @@ export default function GenericLesson() {
                 </div>
 
                 <motion.div
-                    className="glass rounded-[3rem] p-16 mb-12"
+                    className="glass rounded-[2rem] md:rounded-[3rem] p-8 md:p-16 mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md mb-6 border border-white/10">
                         <span className="text-sm font-mono text-[var(--text-muted)]">Lesson {id}</span>
                     </div>
-                    <h1 className="text-6xl md:text-7xl font-black mb-6">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight">
                         <span className="bg-gradient-to-r from-[#61dafb] via-[#764abc] to-[#f76b1c] bg-clip-text text-transparent">
                             {lesson.title}
                         </span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-[var(--text-secondary)] max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+                    <p className="text-lg md:text-2xl text-[var(--text-secondary)] max-w-3xl mx-auto mb-12 font-light leading-relaxed">
                         {lesson.description}
                     </p>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
                         {lesson.topics.map((topic, index) => (
-                            <div key={index} className="glass p-6 rounded-2xl border border-white/5 transition-all duration-300 hover:bg-white/10 group">
+                            <div key={index} className="glass p-4 md:p-6 rounded-2xl border border-white/5 transition-all duration-300 hover:bg-white/10 group">
                                 <p className="font-bold text-[var(--text-primary)] group-hover:text-[#61dafb]">{topic}</p>
                             </div>
                         ))}

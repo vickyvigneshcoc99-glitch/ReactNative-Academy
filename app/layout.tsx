@@ -11,6 +11,20 @@ export const metadata: Metadata = {
     description: "Learn Once, Write Anywhere - Master React Native with interactive lessons",
     type: "website",
   },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    email: false,
+    address: false,
+  },
+};
+
+export const viewport = {
+  themeColor: "#0a0e27",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -19,9 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="antialiased">
         {children}

@@ -106,17 +106,17 @@ export default function Lesson7() {
                     </Link>
                 </motion.div>
 
-                <motion.div className="glass rounded-[2rem] p-12 mb-12 text-center" variants={{ visible: { opacity: 1, y: 0 }, hidden: itemVariants }}>
+                <motion.div className="glass rounded-[2rem] p-6 md:p-12 mb-12 text-center" variants={{ visible: { opacity: 1, y: 0 }, hidden: itemVariants }}>
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md mb-6 border border-white/10">
                         <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
                         <span className="text-sm font-mono text-[var(--text-muted)]">Lesson 7</span>
                     </div>
-                    <h1 className="text-6xl md:text-7xl font-black mb-6 tracking-tight">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
                         <span className="bg-gradient-to-r from-[#10b981] via-[#61dafb] to-[#764abc] bg-clip-text text-transparent">
                             Forms & Input
                         </span>
                     </h1>
-                    <p className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                    <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                         Handle user data gracefully. Master TextInputs, keyboard management, and validation patterns for a smooth mobile experience.
                     </p>
                 </motion.div>
@@ -127,7 +127,7 @@ export default function Lesson7() {
                             <button
                                 key={index}
                                 onClick={() => setActiveExample(index)}
-                                className={`px-8 py-4 rounded-2xl font-bold transition-all relative overflow-hidden group ${activeExample === index ? 'text-white' : 'glass text-[var(--text-secondary)]'}`}
+                                className={`px-4 md:px-8 py-3 md:py-4 rounded-2xl font-bold transition-all relative overflow-hidden group whitespace-nowrap ${activeExample === index ? 'text-white' : 'glass text-[var(--text-secondary)]'}`}
                             >
                                 {activeExample === index && (
                                     <motion.div layoutId="tab7" className="absolute inset-0 bg-gradient-to-r from-[#10b981] to-[#61dafb] z-0" />
@@ -138,16 +138,16 @@ export default function Lesson7() {
                     </div>
 
                     <AnimatePresence mode="wait">
-                        <motion.div key={activeExample} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="grid md:grid-cols-2 gap-8 mb-8">
+                        <motion.div key={activeExample} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="grid md:grid-cols-2 gap-6 md:gap-8 mb-8">
                             <div className="group">
                                 <h3 className="text-xl font-bold text-[#61dafb] mb-4">React Web</h3>
-                                <div className="bg-[#0f1122] rounded-[2rem] p-8 border border-white/5 group-hover:border-[#61dafb]/30 transition-all">
+                                <div className="bg-[#0f1122] rounded-2xl md:rounded-[2rem] p-6 md:p-8 border border-white/5 group-hover:border-[#61dafb]/30 transition-all">
                                     <pre className="text-sm font-mono text-[var(--text-secondary)] overflow-x-auto"><code>{codeExamples[activeExample].web}</code></pre>
                                 </div>
                             </div>
                             <div className="group">
                                 <h3 className="text-xl font-bold text-[#10b981] mb-4">React Native</h3>
-                                <div className="bg-[#0f1122] rounded-[2rem] p-8 border border-white/5 group-hover:border-[#10b981]/30 transition-all">
+                                <div className="bg-[#0f1122] rounded-2xl md:rounded-[2rem] p-6 md:p-8 border border-white/5 group-hover:border-[#10b981]/30 transition-all">
                                     <pre className="text-sm font-mono text-[var(--text-secondary)] overflow-x-auto"><code>{codeExamples[activeExample].native}</code></pre>
                                 </div>
                             </div>
@@ -166,9 +166,9 @@ export default function Lesson7() {
                 </motion.section>
 
                 <motion.section className="mb-20" variants={{ visible: { opacity: 1, y: 0 }, hidden: itemVariants }}>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {formTips.map((tip, i) => (
-                            <motion.div key={i} whileHover={{ y: -10 }} className="glass p-8 rounded-[2rem] border border-white/5 hover:bg-white/10 transition-all group">
+                            <motion.div key={i} whileHover={{ y: -10 }} className="glass p-6 md:p-8 rounded-[2rem] border border-white/5 hover:bg-white/10 transition-all group">
                                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{tip.icon}</div>
                                 <h4 className="font-bold mb-2 text-white">{tip.title}</h4>
                                 <p className="text-sm text-[var(--text-muted)]">{tip.description}</p>
@@ -178,21 +178,21 @@ export default function Lesson7() {
                 </motion.section>
 
                 <motion.section className="mb-20" variants={{ visible: { opacity: 1, y: 0 }, hidden: itemVariants }}>
-                    <div className="glass rounded-3xl p-12 text-center relative overflow-hidden group">
+                    <div className="glass rounded-[2rem] md:rounded-3xl p-8 md:p-12 text-center relative overflow-hidden group">
                         <div className="absolute inset-0 bg-gradient-to-br from-[#10b981]/10 to-[#61dafb]/10 opacity-50" />
-                        <h2 className="text-4xl font-black mb-6 relative z-10">Try It Yourself</h2>
-                        <p className="text-xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-black mb-6 relative z-10">Try It Yourself</h2>
+                        <p className="text-lg md:text-xl text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto relative z-10">
                             Test interactive forms and keyboard-avoiding layouts in the sandbox.
                         </p>
-                        <Link href="/playground" className="inline-block px-12 py-5 bg-gradient-to-r from-[#10b981] to-[#61dafb] rounded-xl font-bold text-xl text-white shadow-2xl hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:scale-105 transition-all relative z-10">
+                        <Link href="/playground" className="inline-block px-8 md:px-12 py-4 md:py-5 bg-gradient-to-r from-[#10b981] to-[#61dafb] rounded-xl font-bold text-lg md:text-xl text-white shadow-2xl hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:scale-105 transition-all relative z-10">
                             Open Playground
                         </Link>
                     </div>
                 </motion.section>
 
-                <div className="flex justify-between items-center mt-20">
-                    <Link href="/lessons/6" className="px-10 py-5 glass rounded-2xl font-bold text-[var(--text-primary)] hover:bg-white/10 transition-all">← Lesson 6</Link>
-                    <Link href="/lessons/8" className="px-10 py-5 bg-gradient-to-r from-[#10b981] to-[#61dafb] rounded-2xl font-bold text-white hover:scale-105 transition-all">Next Lesson →</Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-20">
+                    <Link href="/lessons/6" className="w-full sm:w-auto text-center px-10 py-5 glass rounded-2xl font-bold text-[var(--text-primary)] hover:bg-white/10 transition-all">← Lesson 6</Link>
+                    <Link href="/lessons/8" className="w-full sm:w-auto text-center px-10 py-5 bg-gradient-to-r from-[#10b981] to-[#61dafb] rounded-2xl font-bold text-white hover:scale-105 transition-all">Next Lesson →</Link>
                 </div>
             </motion.div>
         </main>

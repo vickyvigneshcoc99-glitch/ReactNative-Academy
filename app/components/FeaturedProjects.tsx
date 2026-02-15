@@ -64,8 +64,8 @@ const projects: Project[] = [
 
 export function FeaturedProjects() {
     return (
-        <div className="space-y-12">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="glass rounded-3xl p-4 md:p-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
                     <a
                         key={index}
@@ -79,8 +79,8 @@ export function FeaturedProjects() {
                                 {project.icon}
                             </div>
                             <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${project.type === 'React'
-                                    ? 'bg-[#61dafb]/20 text-[#61dafb] border border-[#61dafb]/30'
-                                    : 'bg-[#764abc]/20 text-[#764abc] border border-[#764abc]/30'
+                                ? 'bg-[#61dafb]/20 text-[#61dafb] border border-[#61dafb]/30'
+                                : 'bg-[#764abc]/20 text-[#764abc] border border-[#764abc]/30'
                                 }`}>
                                 {project.type}
                             </div>

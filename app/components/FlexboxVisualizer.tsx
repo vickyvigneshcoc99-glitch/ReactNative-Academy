@@ -27,27 +27,27 @@ export function FlexboxVisualizer() {
     ];
 
     return (
-        <div className="glass rounded-3xl p-8 max-w-6xl mx-auto">
+        <div className="glass rounded-3xl p-4 md:p-8 max-w-6xl mx-auto">
             {/* Platform Toggle */}
             <div className="flex justify-center mb-8">
                 <div className="inline-flex bg-white/5 rounded-xl p-1">
                     <button
                         onClick={() => handlePlatformChange('web')}
-                        className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${platform === 'web'
-                                ? 'bg-[#61dafb] text-white shadow-lg'
-                                : 'text-[var(--text-secondary)] hover:text-white'
+                        className={`px-4 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${platform === 'web'
+                            ? 'bg-[#61dafb] text-white shadow-lg'
+                            : 'text-[var(--text-secondary)] hover:text-white'
                             }`}
                     >
-                        🌐 React Web
+                        🌐 Web
                     </button>
                     <button
                         onClick={() => handlePlatformChange('native')}
-                        className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${platform === 'native'
-                                ? 'bg-[#764abc] text-white shadow-lg'
-                                : 'text-[var(--text-secondary)] hover:text-white'
+                        className={`px-4 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${platform === 'native'
+                            ? 'bg-[#764abc] text-white shadow-lg'
+                            : 'text-[var(--text-secondary)] hover:text-white'
                             }`}
                     >
-                        📱 React Native
+                        📱 Native
                     </button>
                 </div>
             </div>
@@ -58,16 +58,16 @@ export function FlexboxVisualizer() {
                     <div className="text-3xl">⚠️</div>
                     <div>
                         <h4 className="font-bold text-[#f76b1c] mb-2 text-xl">Critical Difference!</h4>
-                        <p className="text-[var(--text-secondary)] text-lg">
-                            React Web defaults to <code className="px-2 py-1 bg-white/10 rounded text-[#61dafb] font-mono">flexDirection: row</code> (horizontal)
+                        <p className="text-[var(--text-secondary)] text-base md:text-lg">
+                            Web: <code className="px-1.5 py-0.5 bg-white/10 rounded text-[#61dafb] font-mono">row</code>
                             <br />
-                            React Native defaults to <code className="px-2 py-1 bg-white/10 rounded text-[#764abc] font-mono">flexDirection: column</code> (vertical)
+                            Native: <code className="px-1.5 py-0.5 bg-white/10 rounded text-[#764abc] font-mono">column</code>
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8">
                 {/* Controls */}
                 <div className="space-y-6">
                     <h3 className="text-2xl font-bold mb-4 text-[var(--text-primary)]">Flexbox Properties</h3>
@@ -83,8 +83,8 @@ export function FlexboxVisualizer() {
                                     key={dir}
                                     onClick={() => setFlexDirection(dir)}
                                     className={`px-4 py-3 rounded-xl font-mono text-sm font-semibold transition-all duration-300 ${flexDirection === dir
-                                            ? 'bg-gradient-to-r from-[#61dafb] to-[#764abc] text-white shadow-lg'
-                                            : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+                                        ? 'bg-gradient-to-r from-[#61dafb] to-[#764abc] text-white shadow-lg'
+                                        : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
                                         }`}
                                 >
                                     {dir}
@@ -104,8 +104,8 @@ export function FlexboxVisualizer() {
                                     key={justify}
                                     onClick={() => setJustifyContent(justify)}
                                     className={`px-4 py-3 rounded-xl font-mono text-xs font-semibold transition-all duration-300 ${justifyContent === justify
-                                            ? 'bg-gradient-to-r from-[#764abc] to-[#f76b1c] text-white shadow-lg'
-                                            : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+                                        ? 'bg-gradient-to-r from-[#764abc] to-[#f76b1c] text-white shadow-lg'
+                                        : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
                                         }`}
                                 >
                                     {justify}
@@ -125,8 +125,8 @@ export function FlexboxVisualizer() {
                                     key={align}
                                     onClick={() => setAlignItems(align)}
                                     className={`px-4 py-3 rounded-xl font-mono text-sm font-semibold transition-all duration-300 ${alignItems === align
-                                            ? 'bg-gradient-to-r from-[#f76b1c] to-[#10b981] text-white shadow-lg'
-                                            : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
+                                        ? 'bg-gradient-to-r from-[#f76b1c] to-[#10b981] text-white shadow-lg'
+                                        : 'bg-white/5 text-[var(--text-secondary)] hover:bg-white/10'
                                         }`}
                                 >
                                     {align}
@@ -155,7 +155,7 @@ export function FlexboxVisualizer() {
                 <div>
                     <h3 className="text-2xl font-bold mb-4 text-[var(--text-primary)]">Live Preview</h3>
 
-                    <div className="bg-white/5 rounded-2xl p-8 border border-white/10 min-h-[400px]">
+                    <div className="bg-white/5 rounded-2xl p-4 md:p-8 border border-white/10 min-h-[300px] md:min-h-[400px]">
                         <div
                             className="w-full h-full border-2 border-dashed border-white/20 rounded-xl p-4 transition-all duration-500"
                             style={{
@@ -163,7 +163,7 @@ export function FlexboxVisualizer() {
                                 flexDirection,
                                 justifyContent,
                                 alignItems,
-                                minHeight: '350px'
+                                minHeight: '300px'
                             }}
                         >
                             {boxes.map((box) => (
@@ -172,10 +172,12 @@ export function FlexboxVisualizer() {
                                     className="rounded-xl font-bold text-white flex items-center justify-center shadow-lg transition-all duration-500 hover:scale-110"
                                     style={{
                                         backgroundColor: box.color,
-                                        width: flexDirection === 'row' ? '80px' : alignItems === 'stretch' ? '100%' : '120px',
-                                        height: flexDirection === 'column' ? '80px' : alignItems === 'stretch' ? '100%' : '120px',
-                                        minWidth: flexDirection === 'row' ? '80px' : undefined,
-                                        minHeight: flexDirection === 'column' ? '80px' : undefined
+                                        width: flexDirection === 'row' ? '60px' : alignItems === 'stretch' ? '100%' : '100px',
+                                        height: flexDirection === 'column' ? '60px' : alignItems === 'stretch' ? '100%' : '100px',
+                                        minWidth: flexDirection === 'row' ? '60px' : undefined,
+                                        minHeight: flexDirection === 'column' ? '60px' : undefined,
+                                        maxWidth: flexDirection === 'row' ? '80px' : undefined,
+                                        maxHeight: flexDirection === 'column' ? '80px' : undefined
                                     }}
                                 >
                                     {box.id}
