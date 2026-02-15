@@ -83,7 +83,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+Once the server is running, you can view the application in your browser.
 
 ### For Mobile Testing (Optional)
 
@@ -96,10 +96,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Next.js 16** - React framework with App Router
+- **Next.js 15** - React framework with App Router
 - **React 19** - Latest React with Server Components
 - **TypeScript** - Type safety and better DX
-- **Tailwind CSS 4** - Utility-first styling
+- **Tailwind CSS 3** - Utility-first styling
 
 ### Features
 - **Expo Snack SDK** - Live code execution on mobile devices
